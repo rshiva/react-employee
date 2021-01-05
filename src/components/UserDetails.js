@@ -6,7 +6,12 @@ function UserDetails(match) {
     fetchUsers()
   },[]);
 
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState({
+    address: {
+      geo: {}
+    },
+    company: {}
+  });
 
   const fetchUsers = async () => {
     const id = match.match.params.id
@@ -28,7 +33,7 @@ function UserDetails(match) {
                 <tbody><tr>
                   <td class="px-2 py-2 text-gray-500 font-semibold">Address</td>
                   
-                  <td class="px-2 py-2">{console.log(item.address.street)}</td>
+                  <td class="px-2 py-2">{item.address.street} {item.address.city}</td>
                 </tr>
                 <tr>
                   <td class="px-2 py-2 text-gray-500 font-semibold">Phone</td>
@@ -40,8 +45,13 @@ function UserDetails(match) {
                 </tr>
                 <tr>
                   <td class="px-2 py-2 text-gray-500 font-semibold">Company</td>
-                  {/* <td class="px-2 py-2">{item.company}</td> */}
+                  <td class="px-2 py-2">{item.company.name}</td>
                 </tr>
+                <tr>
+                  <td class="px-2 py-2 text-gray-500 font-semibold">Map</td>
+                  <td class="px-2 py-2">{item.address.geo.lat} {item.address.geo.lng}</td>
+                </tr>
+                
               </tbody></table>
 
             </div>
